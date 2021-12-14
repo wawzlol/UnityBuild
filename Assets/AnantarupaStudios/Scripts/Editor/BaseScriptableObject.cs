@@ -1,4 +1,5 @@
-﻿using SimpleJSON;
+﻿#if UNITY_EDITOR
+using SimpleJSON;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using System;
@@ -8,8 +9,10 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+
 namespace AnantarupStudios.Editor
 {
+
 	public abstract class BaseScriptableObject : ScriptableObject, IScriptableObject
 	{
 		protected abstract string assetBundlePath { get; }
@@ -448,4 +451,6 @@ namespace AnantarupStudios.Editor
 		}
 		#endregion
 	}
+
 }
+#endif

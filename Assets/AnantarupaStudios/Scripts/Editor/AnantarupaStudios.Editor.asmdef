@@ -1,7 +1,9 @@
 {
     "name": "AnantarupaStudios.Editor",
     "references": [
-        "GUID:ec3e9f3e05275a64ca92a1824e7feec2"
+        "GUID:ec3e9f3e05275a64ca92a1824e7feec2",
+        "GUID:e88cebb9a3ff09849991f61ba83134d1",
+        "GUID:01dcaeb2689056c489ba2224a70fd0e9"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -10,5 +12,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }
