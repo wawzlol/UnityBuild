@@ -12,7 +12,7 @@ public class GameBuilder : MonoBehaviour {
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new [] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Main.unity" };
-        buildPlayerOptions.locationPathName = "build/Windows";
+        buildPlayerOptions.locationPathName = "build/Windows/Game.exe";
         buildPlayerOptions.target = BuildTarget.StandaloneWindows;
         buildPlayerOptions.options = BuildOptions.None;
 
