@@ -51,16 +51,26 @@ namespace AnantarupaStudios.Utility
 						return AssetDatabase.LoadAssetAtPath<T>(AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName(path, name)[0]);
 					}
 #endif
+
 					if (AssetBundleManifest is null)
 					{
-						AssetBundle assetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" +
+						AssetBundle assetBundle = null;
+
+						try
+						{
+							assetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" +
 #if UNITY_ANDROID
 							"Android"
 #elif UNITY_STANDALONE_WIN
 							"StandaloneWindows"
 #endif
 							);
-						AssetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
+							AssetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
+						}
+						catch
+						{
+							Debug.Log($"{Application.streamingAssetsPath + '/' + "StandAloneWindows"}");
+						}
 					}
 					if (!LoadedAssetBundle.ContainsKey(path))
 					{
@@ -90,14 +100,24 @@ namespace AnantarupaStudios.Utility
 #endif
 			if (AssetBundleManifest is null)
 			{
-				AssetBundle assetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" +
+				AssetBundle assetBundle = null ;
+
+				try
+                {
+					assetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" +
 #if UNITY_ANDROID
 							"Android"
 #elif UNITY_STANDALONE_WIN
 							"StandaloneWindows"
 #endif
 							);
-				AssetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
+					AssetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
+				}
+                catch
+                {
+					Debug.Log($"{Application.streamingAssetsPath + '/' + "StandAloneWindows"}");
+                }
+				
 			}
 			if (!LoadedAssetBundle.ContainsKey(path))
 			{
