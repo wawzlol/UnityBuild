@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 766978277
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: menu/setting
+      Dependencies: {}
+    Info_1:
+      Name: menu/load
+      Dependencies: {}

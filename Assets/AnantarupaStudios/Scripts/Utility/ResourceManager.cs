@@ -54,11 +54,8 @@ namespace AnantarupaStudios.Utility
 
 					if (AssetBundleManifest is null)
 					{
-						AssetBundle assetBundle = null;
 
-						try
-						{
-							assetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" +
+							AssetBundle assetBundle = AssetBundle.LoadFromFile(Application.persistentDataPath + "/" +
 #if UNITY_ANDROID
 							"Android"
 #elif UNITY_STANDALONE_WIN
@@ -66,11 +63,7 @@ namespace AnantarupaStudios.Utility
 #endif
 							);
 							AssetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
-						}
-						catch
-						{
-							Debug.Log($"{Application.streamingAssetsPath + '/' + "StandAloneWindows"}");
-						}
+
 					}
 					if (!LoadedAssetBundle.ContainsKey(path))
 					{
@@ -78,10 +71,10 @@ namespace AnantarupaStudios.Utility
 						{
 							if (!LoadedAssetBundle.ContainsKey(assetBundle))
 							{
-								LoadedAssetBundle[assetBundle] = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" + assetBundle);
+								LoadedAssetBundle[assetBundle] = AssetBundle.LoadFromFile(Application.persistentDataPath + "/" + assetBundle);
 							}
 						}
-						LoadedAssetBundle[path] = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" + path);
+						LoadedAssetBundle[path] = AssetBundle.LoadFromFile(Application.persistentDataPath + "/" + path);
 					}
 					return LoadedAssetBundle[path].LoadAsset<T>(name);
 				case AssetSource.Resource:
@@ -100,11 +93,8 @@ namespace AnantarupaStudios.Utility
 #endif
 			if (AssetBundleManifest is null)
 			{
-				AssetBundle assetBundle = null ;
 
-				try
-                {
-					assetBundle = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" +
+					AssetBundle assetBundle = AssetBundle.LoadFromFile(Application.persistentDataPath + "/" +
 #if UNITY_ANDROID
 							"Android"
 #elif UNITY_STANDALONE_WIN
@@ -112,11 +102,6 @@ namespace AnantarupaStudios.Utility
 #endif
 							);
 					AssetBundleManifest = assetBundle.LoadAsset<AssetBundleManifest>("assetbundlemanifest");
-				}
-                catch
-                {
-					Debug.Log($"{Application.streamingAssetsPath + '/' + "StandAloneWindows"}");
-                }
 				
 			}
 			if (!LoadedAssetBundle.ContainsKey(path))
@@ -125,10 +110,10 @@ namespace AnantarupaStudios.Utility
 				{
 					if (!LoadedAssetBundle.ContainsKey(assetBundle))
 					{
-						LoadedAssetBundle[assetBundle] = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" + assetBundle);
+						LoadedAssetBundle[assetBundle] = AssetBundle.LoadFromFile(Application.persistentDataPath + "/" + assetBundle);
 					}
 				}
-				LoadedAssetBundle[path] = AssetBundle.LoadFromFile(Application.streamingAssetsPath + "/" + path);
+				LoadedAssetBundle[path] = AssetBundle.LoadFromFile(Application.persistentDataPath + "/" + path);
 			}
 			return SceneManager.LoadSceneAsync(LoadedAssetBundle[path].GetAllScenePaths()[0], LoadSceneMode.Additive);
 		}

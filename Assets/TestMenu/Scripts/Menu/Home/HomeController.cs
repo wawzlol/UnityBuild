@@ -1,5 +1,6 @@
 ﻿using AnantarupaStudios.Input;
 using AnantarupaStudios.Menu;
+using System;
 using UnityEngine;
 
 namespace TestMenu.Menu.Home
@@ -8,31 +9,42 @@ namespace TestMenu.Menu.Home
     {
         #region Fields
 
-        public Button newGameBtn;
+        private bool canPressed = false;
         public Button loadGameBtn;
         public Button settingBtn;
 
         #endregion
-        void Start()
+        private void Awake()
         {
-            newGameBtn.ButtonUp += OnNewGameUp;
-            loadGameBtn.ButtonUp += OnLoadGameUp;
-            settingBtn.ButtonUp += OnSettingUp;
+            AssetDownloader.Instance.DownloadDone += OnDownloadDone;
         }
 
-        private void OnNewGameUp()
+        void Start()
         {
-            MenuManager.Show(MenuPath.NewGame.Main);
+            loadGameBtn.ButtonUp += OnLoadGameUp;
+            settingBtn.ButtonUp += OnSettingUp;
+            
+        }
+
+        private void OnDownloadDone()
+        {
+            canPressed = true;
         }
 
         private void OnLoadGameUp()
         {
-            MenuManager.Show(MenuPath.Load.Main);
+            if (canPressed)
+            {
+                MenuManager.Show(MenuPath.Load.Main);
+            }
         }
 
         private void OnSettingUp()
         {
-            MenuManager.Show(MenuPath.Setting.Main);
+            if (canPressed)
+            {
+                MenuManager.Show(MenuPath.Setting.Main);
+            }
         }
 
         public void OnMenuChanged(string path)
