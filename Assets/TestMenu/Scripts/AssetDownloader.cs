@@ -13,8 +13,8 @@ public class AssetDownloader : MonoBehaviour {
     private string assetBundleUrl = "https://drive.google.com/uc?export=download&id=1wIdwYq_f5inJ70XHGZSFaKjcRPSBZDxy";
     private string assetBundleManifest = "https://drive.google.com/uc?export=download&id=1SSmwdsM_Ftjo7gnFXkdDJ4fPIu0ibAlr";
     private string load = "https://drive.google.com/uc?export=download&id=1rZ3m9bXuMAVOmf4kwlds1NeBWFr0C1_R";
-    private string loadManifest = "https://drive.google.com/uc?export=download&id=1rZ3m9bXuMAVOmf4kwlds1NeBWFr0C1_R";
-    private string setting = "https://drive.google.com/uc?export=download&id=1rZ3m9bXuMAVOmf4kwlds1NeBWFr0C1_R";
+    private string loadManifest = "https://drive.google.com/uc?export=download&id=1H9CL4ne3pw9kGD_zSuE7uTfE-kDHC-3c";
+    private string setting = "https://drive.google.com/uc?export=download&id=12AXV1UCJJAW0SfS4NCkPLT-K33R9mfpv";
     private string settingManifest = "https://drive.google.com/uc?export=download&id=1BOek_0j7YQXu_uRgH5pIRnyEzDhGG5_c";
 
 #else
@@ -56,14 +56,22 @@ public class AssetDownloader : MonoBehaviour {
             Directory.CreateDirectory($"{persistentPath}/menu");
         }
 
+#if UNITY_ANDROID
+        assetFiles.Add(new AssetFile(assetBundleUrl, $"{persistentPath}/Android", "AssetBundle"));
+        assetFiles.Add(new AssetFile(assetBundleManifest, $"{persistentPath}/Android.manifest", "AssetBundleManifest"));
+        assetFiles.Add(new AssetFile(load, $"{persistentPath}/menu/load", "load"));
+        assetFiles.Add(new AssetFile(loadManifest, $"{persistentPath}/menu/load.manifest", "loadManifest"));
+        assetFiles.Add(new AssetFile(setting, $"{persistentPath}/menu/setting", "settingManifest"));
+        assetFiles.Add(new AssetFile(settingManifest, $"{persistentPath}/menu/setting.manifest", "settingManifest"));
+#else
         assetFiles.Add(new AssetFile(assetBundleUrl, $"{persistentPath}/StandaloneWindows", "AssetBundle"));
         assetFiles.Add(new AssetFile(assetBundleManifest, $"{persistentPath}/StandaloneWindows.manifest", "AssetBundleManifest"));
         assetFiles.Add(new AssetFile(load, $"{persistentPath}/menu/load", "load"));
         assetFiles.Add(new AssetFile(loadManifest, $"{persistentPath}/menu/load.manifest", "loadManifest"));
         assetFiles.Add(new AssetFile(setting, $"{persistentPath}/menu/setting", "settingManifest"));
         assetFiles.Add(new AssetFile(settingManifest, $"{persistentPath}/menu/setting.manifest", "settingManifest"));
-
-        foreach(AssetFile file in assetFiles)
+#endif
+        foreach (AssetFile file in assetFiles)
         {
             DownloadsDone[file.Name] = false;
             if (!CheckFileExist(file.Path))
