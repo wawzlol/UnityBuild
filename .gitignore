@@ -4,3 +4,4 @@ Temp/
 *.csproj
 UnityBuild.sln
 *.cache
+BuildTest
