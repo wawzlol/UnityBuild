@@ -9,7 +9,7 @@ using System.IO;
 public class GameBuilder : MonoBehaviour {
 
     [MenuItem("Build/Build Windows")]
-    public static void BuildPC()
+    public static void BuildStandaloneWindows()
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new [] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Main.unity" };
@@ -36,7 +36,7 @@ public class GameBuilder : MonoBehaviour {
     {
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
         buildPlayerOptions.scenes = new[] { "Assets/Scenes/MainMenu.unity", "Assets/Scenes/Main.unity" };
-        buildPlayerOptions.locationPathName = "BuildTest";
+        buildPlayerOptions.locationPathName = "BuildTest.apk";
         buildPlayerOptions.target = BuildTarget.Android;
         buildPlayerOptions.options = BuildOptions.None;
 

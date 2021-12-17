@@ -51,9 +51,10 @@ public class AssetDownloader : MonoBehaviour {
     {
 
         string persistentPath = Application.persistentDataPath;
+
         if (!Directory.Exists($"{persistentPath}/menu"))
         {
-            Directory.CreateDirectory($"{persistentPath}/menu");
+            DirectoryInfo info = Directory.CreateDirectory($"{persistentPath}/menu");
         }
 
 #if UNITY_ANDROID
@@ -103,7 +104,6 @@ public class AssetDownloader : MonoBehaviour {
             
             if (webRequest.isHttpError || webRequest.isNetworkError)
             {
-                Debug.Log("Error");
                 DownloadsDone[name] = true;
             }
             else
